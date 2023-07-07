@@ -19,10 +19,11 @@ val koinModule = module {
 
     single{
         KMongo.createClient(
+            System.getenv("MONGODB_URI")
 
             //Environment variable which we will create later from heroku
 
-"mongodb+srv://triveagames:MlmDDuDUR4DJ9TJw@cluster0.d5vz4sb.mongodb.net/?retryWrites=true&w=majority"
+//"mongodb+srv://triveagames:MlmDDuDUR4DJ9TJw@cluster0.d5vz4sb.mongodb.net/?retryWrites=true&w=majority"
         ).coroutine.getDatabase(DATABASE_NAME)
     }
 
