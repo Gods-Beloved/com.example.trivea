@@ -3,6 +3,7 @@ package com.example.route.user
 import com.example.domain.model.EndPoints
 
 import com.example.domain.model.requests.ApiUserRequest
+import com.example.domain.model.response.ApiResponse
 import com.example.domain.model.user.TriveaUser
 import com.example.domain.repository.UserDataSource
 import io.ktor.http.*
@@ -60,9 +61,12 @@ fun Route.saveUserRoute(
         val wasAcknowledged = userDataSource.saveUserInfo(triveaUser)
 
         if (!wasAcknowledged) {
-            call.respond(HttpStatusCode.Conflict,"USER ALREADY EXIST")
+            call.respond(ApiResponse(
+                success = true
+            ))
             return@post
         }
+
 
 
 
