@@ -64,9 +64,8 @@ fun Route.saveUserRoute(
             call.respond(ApiResponse(
                 success = true
             ))
-            return@post
-        }
 
+        }
 
 
 
