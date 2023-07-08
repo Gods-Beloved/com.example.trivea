@@ -34,14 +34,9 @@ class UserDataSourceImpl(
     }
 
 
-    override suspend fun saveUserInfo(triveaUser:TriveaUser): Boolean {
-        val existingTriveaUser = users.findOne(filter = TriveaUser::ownerId eq triveaUser.ownerId)
-        return if (existingTriveaUser == null) {
-            users.insertOne(document = triveaUser)
-            false
-        } else {
-            false
-        }
+    override suspend fun saveUserInfo(ownerId:String): Boolean {
+        val existingTriveaUser = users.findOne(filter = TriveaUser::ownerId eq ownerId)
+        return existingTriveaUser == null
     }
 
     override suspend fun saveUserSignUpInfo(triveaUser: TriveaUser): Boolean {

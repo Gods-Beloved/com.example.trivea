@@ -14,7 +14,7 @@ interface UserDataSource {
 
        suspend fun signInUser(username:String):TriveaUser?
 
-       suspend fun saveUserInfo(triveaUser: TriveaUser): Boolean
+       suspend fun saveUserInfo(ownerId: String): Boolean
 
        suspend fun saveUserSignUpInfo(triveaUser: TriveaUser): Boolean
 

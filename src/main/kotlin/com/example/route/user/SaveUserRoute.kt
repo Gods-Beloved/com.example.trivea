@@ -1,6 +1,7 @@
 package com.example.route.user
 
 import com.example.domain.model.EndPoints
+import com.example.domain.model.requests.ApiOwnerId
 
 import com.example.domain.model.requests.ApiUserRequest
 import com.example.domain.model.response.ApiResponse
@@ -25,10 +26,12 @@ fun Route.saveUserRoute(
     post(EndPoints.SignUpUser.path) {
 
 
-        val request = call.receiveOrNull<ApiUserRequest>() ?: kotlin.run {
+        val request = call.receiveOrNull<ApiOwnerId>() ?: kotlin.run {
             call.respond(HttpStatusCode.BadRequest,"Request is null")
             return@post
         }
+
+        val userId = request.ownerId
 
 
 
@@ -43,29 +46,14 @@ fun Route.saveUserRoute(
 
 
 
-        val triveaUser = TriveaUser(
-            //Solve id issue
-
-            ownerId= request.ownerId,
-            bioData= "Trivious App Player",
-            phoneNumber = "unverified",
-            username = request.username,
-            email = request.email,
-            profilePicture = request.profilePicture
-            //account = Account()
-
-        )
+        val wasAcknowledged = userDataSource.saveUserInfo(userId)
 
 
-
-        val wasAcknowledged = userDataSource.saveUserInfo(triveaUser)
-
-        if (!wasAcknowledged) {
             call.respond(ApiResponse(
-                success = true
+                success = wasAcknowledged
             ))
 
-        }
+
 
 
 
