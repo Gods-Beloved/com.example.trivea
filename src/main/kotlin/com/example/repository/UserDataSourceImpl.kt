@@ -10,7 +10,10 @@ class UserDataSourceImpl(
     database:CoroutineDatabase
 ):UserDataSource {
 
-    private val users = database.getCollection<TriveaUser>()
+
+
+    private val users = database.getCollection<TriveaUser>("TriveaUser")
+
 
     override suspend fun getUserInfo(userId: String): TriveaUser? {
         return users.findOne(filter = TriveaUser::ownerId eq userId)
