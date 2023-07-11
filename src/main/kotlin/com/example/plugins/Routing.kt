@@ -2,6 +2,7 @@ package com.example.plugins
 
 import com.example.domain.repository.QuestionsDataSource
 import com.example.domain.repository.UserDataSource
+import com.example.route.questions.getLivePrice
 import com.example.route.questions.getLiveQuestions
 import com.example.route.rootRoute
 import com.example.route.user.saveUserRoute
@@ -24,6 +25,7 @@ fun Application.configureRouting(
         rootRoute()
         saveUserRoute(userDataSource=userDataSource,application)
         getLiveQuestions(questionsDataSource = questionsDataSource)
+        getLivePrice(questionsDataSource = questionsDataSource)
 
 
 

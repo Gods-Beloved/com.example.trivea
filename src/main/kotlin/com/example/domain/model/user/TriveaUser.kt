@@ -6,8 +6,7 @@ import org.bson.types.ObjectId
 
 @kotlinx.serialization.Serializable
 data class TriveaUser(
-
-
+    val _id:String,
     val ownerId: String,
     val username:String,
     val profilePicture:String? = null,
