@@ -35,7 +35,7 @@ fun Route.transact(
 
             )
 
-            val response =  transactionsDataSource.saveTransaction(account = acc,userId = request.id,userDataSource = userDataSource,request.amount)
+            val response =  transactionsDataSource.saveTransaction(account = acc, reference = request.reference,userId=request.id,userDataSource = userDataSource,request.amount)
 
             if(response){
                 call.respond(SaveResponse(
