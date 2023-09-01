@@ -35,30 +35,41 @@ fun Route.transact(
 
             )
 
+            val response =  transactionsDataSource.saveTransaction(account = acc,userId = request.id,userDataSource = userDataSource,request.amount)
 
-                try {
-
-                    val response =  transactionsDataSource.saveTransaction(account = acc,userId = request.id,userDataSource = userDataSource,request.amount)
-
-                    if (response) {
-                        
-
-                        app.log.info("TRANSACTION SUCCESSFULLY SAVED/RETRIEVED")
-                        call.respond(SaveResponse(
+            if(response){
+                call.respond(SaveResponse(
                             updated =  true
                         ))
-                    } else {
-                        app.log.info("ERROR SAVING THE TRANSFER")
-                        call.respond(SaveResponse(
-                            updated =  false
-                        ))
+            }
 
-                    }
-                }catch (ex:Exception){
-                    app.log.info("ERROR SAVING THE TRANSFER $ex")
-
-                }
-
+//
+//                try {
+//
+//                    val response =  transactionsDataSource.saveTransaction(account = acc,userId = request.id,userDataSource = userDataSource,request.amount)
+//
+//                    if (response) {
+//
+//
+//                        app.log.info("TRANSACTION SUCCESSFULLY SAVED/RETRIEVED")
+//                        call.respond(SaveResponse(
+//                            updated =  true
+//                        ))
+//                    } else {
+//                        app.log.info("ERROR SAVING THE TRANSFER")
+//                        call.respond(SaveResponse(
+//                            updated =  false
+//                        ))
+//
+//                    }
+//                }catch (ex:Exception){
+//                    app.log.info("ERROR SAVING THE TRANSFER $ex")
+//                    call.respond(SaveResponse(
+//                        updated =  false
+//                    ))
+//
+//                }
+//
 
 
 

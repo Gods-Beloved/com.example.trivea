@@ -4,7 +4,7 @@ import com.example.domain.model.user.account_info.Account
 
 interface TransactionsDataSource {
 
-    suspend fun saveTransaction(account: Account,userId:String, userDataSource:UserDataSource, amount:String):Boolean
+    suspend fun saveTransaction(account: Account,reference:String,userId:String, userDataSource:UserDataSource, amount:String):Boolean
 
 
     suspend fun getOnlyWithdrawal(id:String):List<Account>?

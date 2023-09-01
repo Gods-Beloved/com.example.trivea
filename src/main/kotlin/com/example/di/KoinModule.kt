@@ -2,7 +2,7 @@ package com.example.di
 
 import com.example.data.repository.AdvertDataSourceImpl
 import com.example.data.repository.QuestionDataSourceImpl
-import com.example.data.repository.TransactionDataSourceImpl
+import com.example.repository.TransactionDataSourceImpl
 import com.example.repository.UserDataSourceImpl
 import com.example.domain.repository.AdvertDataSource
 import com.example.domain.repository.QuestionsDataSource
