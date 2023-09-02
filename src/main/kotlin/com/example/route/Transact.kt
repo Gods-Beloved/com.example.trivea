@@ -1,11 +1,13 @@
 package com.example.route
 
 import com.example.domain.model.EndPoints
+import com.example.domain.model.requests.ApiOwnerId
 
 import com.example.domain.model.response.SaveResponse
 import com.example.domain.model.user.account_info.Account
 import com.example.domain.repository.TransactionsDataSource
 import com.example.domain.repository.UserDataSource
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -22,8 +24,14 @@ fun Route.transact(
         post(EndPoints.SaveTransaction.path){
 
 
+            val request = call.receiveOrNull<Account>() ?: kotlin.run {
+                call.respond(HttpStatusCode.BadRequest,"Request is null")
+                return@post
+            }
 
-            val request = call.receive<Account>()
+            call.respond(HttpStatusCode.OK,"Inside post")
+
+            app.log.info("INSIDE REQUEST")
 
             val acc = Account(
                 id= request.id,
@@ -34,6 +42,8 @@ fun Route.transact(
                 reference = request.reference,
 
             )
+
+
 
             val response =  transactionsDataSource.saveTransaction(account = acc, reference = request.reference,userId=request.id,userDataSource = userDataSource,request.amount)
 

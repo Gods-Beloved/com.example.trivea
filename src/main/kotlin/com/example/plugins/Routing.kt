@@ -30,7 +30,6 @@ fun Application.configureRouting(
         rootRoute()
         saveUserRoute(userDataSource=userDataSource,application)
         transact(application, transactionsDataSource = transactionsDataSource, userDataSource = userDataSource)
-
         getLiveQuestions(questionsDataSource = questionsDataSource)
         getLivePrice(questionsDataSource = questionsDataSource)
 
