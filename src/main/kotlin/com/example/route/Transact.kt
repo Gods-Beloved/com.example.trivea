@@ -29,7 +29,6 @@ fun Route.transact(
                 return@post
             }
 
-            call.respond(HttpStatusCode.OK,"Inside post")
 
             app.log.info("INSIDE REQUEST")
 
